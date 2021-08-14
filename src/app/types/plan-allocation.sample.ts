@@ -1,5 +1,5 @@
 import { PlanAllocation } from './plan-allocation.type';
-import { PlanSample1, PlanSample2, PlanSample3, PlanSample4, PlanSample5 } from './plan.sample';
+import { PlanSample1 } from './plan.sample';
 
 export const PlanAllocationSample: PlanAllocation = {
   id: '',

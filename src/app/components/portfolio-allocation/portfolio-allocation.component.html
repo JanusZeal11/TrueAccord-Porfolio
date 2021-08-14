@@ -1,0 +1,10 @@
+<p>True Accord - Portfolio Allocation</p>
+
+<button mat-raised-button (click)="addPlan()">Add Plan</button>
+
+<app-investment-table
+  [planAllocations$]="getPlanAllocationObservable()"
+  (lockPlan)="lockPlan($event)"
+  (removePlan)="removePlan($event)"
+  (updatePlan)="updatePlan($event)"
+></app-investment-table>

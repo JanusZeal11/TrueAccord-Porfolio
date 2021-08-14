@@ -1,0 +1,76 @@
+<form>
+  <table mat-table [dataSource]="planAllocations" class="mat-elevation-z8">
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>DEL</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon aria-hidden="false"
+                  aria-label="Remove Plan"
+                  style="cursor: pointer"
+                  (click)="removePlan.emit(element.id)"
+        >delete</mat-icon>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Investment</th>
+      <td mat-cell *matCellDef="let element">{{ element.plan.name }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="slider">
+      <th mat-header-cell *matHeaderCellDef>Allocation</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slider [disabled]="element.locked"
+                    [value]="element.allocation"
+                    min="0"
+                    max="100"
+                    step="1"
+                    [thumbLabel]="true"
+                    (change)="updatePlanSlider(element.id, $event)"
+        ></mat-slider>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="allocation">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput
+                 [disabled]="element.locked"
+                 name="allocation"
+                 type="text"
+                 min="0"
+                 [max]="calculateMax()"
+                 step="1"
+                 [value]="element.allocation"
+                 (change)="updatePlanValue(element.id, $event)"
+          />
+          <span matSuffix>&nbsp;%</span>
+        </mat-form-field>
+        <span>
+          <mat-icon *ngIf="element.locked"
+                    style="cursor: pointer"
+                    (click)="lockPlan.emit({ id: element.id, locked: false })"
+          >
+            lock
+          </mat-icon>
+          <mat-icon *ngIf="!element.locked"
+                    style="cursor: pointer"
+                    (click)="lockPlan.emit({ id: element.id })"
+          >
+            lock_open
+          </mat-icon>
+        </span>
+      </td>
+      <td mat-footer-cell *matFooterCellDef> Total: {{ sumAllocations() }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayColumns"></tr>
+  </table>
+</form>
+
+<!--<pre>{{ planAllocations | json }}</pre>-->

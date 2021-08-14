@@ -1,0 +1,25 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { PortfolioAllocationComponent } from './portfolio-allocation.component';
+
+describe('PortfolioAllocationComponent', () => {
+  let component: PortfolioAllocationComponent;
+  let fixture: ComponentFixture<PortfolioAllocationComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ PortfolioAllocationComponent ]
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PortfolioAllocationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
