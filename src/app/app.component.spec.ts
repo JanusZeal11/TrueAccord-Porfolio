@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { PortfolioAllocationComponent } from './components/portfolio-allocation/portfolio-allocation.component';
+import { InvestmentTableComponent } from './components/investment-table/investment-table.component';
+import { MaterialModule } from './material.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [ AppComponent, PortfolioAllocationComponent, InvestmentTableComponent ],
+      imports: [ MaterialModule ]
     }).compileComponents();
   });
 
